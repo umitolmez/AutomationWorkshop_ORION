@@ -88,14 +88,14 @@ public class Week4_testng {
         String expectedURL ="https://twitter.com/home";
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(actualURL, expectedURL);
+
+        String actualUsername = driver.findElement(By.xpath("//div[@dir='ltr']/span")).getText();
+        Assert.assertEquals(actualUsername, "@"+nick);
     }
 
     @Test
     public void tweetAndDelete() throws InterruptedException {
         login();
-
-        String actualUsername = driver.findElement(By.xpath("//div[@dir='ltr']/span")).getText();
-        Assert.assertEquals(actualUsername, "@"+nick);
 
         //send tweet
         WebElement tweet =driver.findElement(By.xpath("//div[@data-contents='true']"));
@@ -118,9 +118,6 @@ public class Week4_testng {
     @Test
     public void retweet() throws InterruptedException {
         login();
-
-        String actualUsername = driver.findElement(By.xpath("//div[@dir='ltr']/span")).getText();
-        Assert.assertEquals(actualUsername, "@"+nick);
 
         //retweet Nth tweet (between 1-9)
         List<WebElement> nthTweet= driver.findElements(By.xpath("//div[@data-testid='retweet']"));
